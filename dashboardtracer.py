@@ -346,7 +346,7 @@ with tab2:
   st.write(
     """
     # Visualisasi Cosine Similarities
-    Cosine Similarity dihitung untuk setiap LO dengan meninjau relevansi LO dan 23 kompetensi yang ada.
+    Cosine Similarity dihitung untuk setiap LO dengan meninjau relevansi LO dan 23 kompetensi yang ada. Adapun data yang digunakan adalah data survei alumni angkatan 2017.
     """
   )
 
