@@ -183,6 +183,12 @@ st.title('Visualisasi Kompetensi dan LO')
 st.header('Tracer Study ITB')
 tab1, tab2 = st.tabs(["Analisis per Fakultas", "Analisis per Program Studi"])
 with tab1:
+  st.write(
+    """
+    # Visualisasi 23 Kompetensi
+    Kompetensi berikut dihitung berdasarkan tiga besar kompetensi yang paling relevan dengan setiap Learning Outcomes program studi.
+    """
+  )
   options = ['Pilih fakultas...'] + list(topthree['Fakultas'].unique())
   fakultas = st.selectbox("Fakultas",options)
   topkompetensi = topthree[topthree['Fakultas'] == fakultas]['Competencies'].value_counts()
@@ -254,6 +260,12 @@ with tab1:
   st.dataframe(data=plottop3)
 
 with tab2:
+  st.write(
+    """
+    # Visualisasi 23 Kompetensi
+    Kompetensi berikut dihitung berdasarkan tiga besar kompetensi yang paling relevan dengan setiap Learning Outcomes (LO) program studi.
+    """
+  )
   options = ['Pilih program studi...'] + list(topthree['Jurusan'].unique())
   prodi = st.selectbox("Program Studi",options)
   topkompetensi = topthree[topthree['Jurusan'] == prodi]['Competencies'].value_counts()
@@ -330,28 +342,18 @@ with tab2:
     x=alt.X('Cosine Similarity:Q', title="Cosine Similarity"),
     y=alt.Y('LO:N', sort='-x', title="LO")
     ).properties(width=1000, height=800)
+  
+  st.write(
+    """
+    # Visualisasi Cosine Similarities
+    Cosine Similarity dihitung untuk setiap LO dengan meninjau relevansi LO dan 23 kompetensi yang ada.
+    """
+  )
 
   st.altair_chart(chart3, use_container_width=True)
   
   # st.bar_chart(plotcss_idx,x_label="Cosine Similarity",y_label="LO",
   #              horizontal=True,use_container_width=True)
   st.dataframe(data=plotcss)
-  
-  # plt.figure(figsize=[16,10])
-  # plt.barh(index2, val, color=plt.get_cmap("viridis")(0.5))
-  # plt.title(f"Urutan Kompetensi {fakultas}", fontsize=14)
-  # plt.xlabel("Frekuensi")
-  # plt.ylabel("Kompetensi")
-  # plt.legend([f"Kompetensi di {fakultas}"])
-  # st.pyplot(plt)
-
-  # # Save the figure
-  # save_directory = '/content/drive/My Drive'  # 'My Drive' refers to your Google Drive root directory
-  # # file_name = f"{jurusan}_TopCompetencies.png"
-  # save_path = os.path.join(save_directory)
-
-  # Save the figure
-#   plt.savefig(f"{jurusan}_TopCompetencies.png",bbox_inches='tight')
-#   plt.show()
 
 
