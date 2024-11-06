@@ -3,14 +3,20 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import streamlit as st
 import numpy as np
-import urllib
-import re
-import nltk
 import altair as alt
-import itertools
+import nltk
 nltk.download('punkt')
 nltk.download('stopwords')
 nltk.download('wordnet')
+import itertools
+
+# # Download only if not already downloaded
+# try:
+#     stopwords.words('english')
+#     WordNetLemmatizer()
+# except LookupError:
+#     nltk.download('stopwords')
+#     nltk.download('wordnet')
 
 ## TOP COMPETENCIES
 # database cos-miniLM
@@ -130,15 +136,16 @@ def value_competency(prodi,df):
 import gdown
 
 # Load data
-file_id = '1ZayQZrql2cH2-oAezHIWZB1w9u2qK2Xj'
-# Construct the download URL
-url = f'https://drive.google.com/uc?id={file_id}'
-output = 'competency_all.xlsx'
-gdown.download(url, output, quiet=False)
+df = pd.read_csv("https://docs.google.com/spreadsheets/d/1ZayQZrql2cH2-oAezHIWZB1w9u2qK2Xj/export?format=csv&gid=608042825")
+# file_id = '1ZayQZrql2cH2-oAezHIWZB1w9u2qK2Xj'
+# # Construct the download URL
+# url = f'https://drive.google.com/uc?id={file_id}'
+# output = 'competency_all.xlsx'
+# gdown.download(url, output, quiet=False)
 
-# Load the downloaded Excel file
-df = pd.read_excel(output, sheet_name=str("Copy of 17"))
-# https://docs.google.com/spreadsheets/d/1ZayQZrql2cH2-oAezHIWZB1w9u2qK2Xj/edit?gid=456732573#gid=456732573
+# # Load the downloaded Excel file
+# df = pd.read_excel(output, sheet_name=str("Copy of 17"))
+# # https://docs.google.com/spreadsheets/d/1ZayQZrql2cH2-oAezHIWZB1w9u2qK2Xj/edit?gid=456732573#gid=456732573
 
 # Change the column name
 df.columns.values[1] = 'Jurusan'
@@ -346,7 +353,7 @@ with tab2:
   st.write(
     """
     # Visualisasi Cosine Similarities
-    Cosine Similarity dihitung untuk setiap LO dengan meninjau relevansi LO dan 23 kompetensi yang ada. Adapun data yang digunakan adalah data survei alumni angkatan 2017.
+    Cosine Similarity dihitung untuk setiap LO dengan meninjau relevansi LO dan 23 kompetensi yang ada.
     """
   )
 
